@@ -59,12 +59,12 @@ module "alb" {
     {
       port     = 80
       protocol = "HTTP"
-      target_group_index = 0
+      target_group_key = "my_target"
     }
   }
 
   target_groups = {
-    {
+    my_target = {
       name_prefix      = "web-"
       protocol         = "HTTP"
       port             = 80
@@ -75,7 +75,6 @@ module "alb" {
 
   tags = {
     Environment = "dev"
-    Project     = "Example"
   }
 }
 
