@@ -46,7 +46,6 @@ module "autoscaling" {
   health_check_type         = "EC2"
 
   vpc_zone_identifier       = module.web_vpc.public_subnets
-  target_group_arns         = module.web_alb.target_group_arns
   security_groups           = [module.web_sg.security_group_id]
 
   image_id                  = data.aws_ami.app_ami.id
