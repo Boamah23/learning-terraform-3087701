@@ -59,7 +59,7 @@ module "alb" {
     listener_1 = {
       port     = 80
       protocol = "HTTP"
-      target_group_key = "my_target"
+      target_group_index = 0
     }
   }
 
