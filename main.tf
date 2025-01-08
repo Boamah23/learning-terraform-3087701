@@ -34,20 +34,26 @@ module "web_vpc" {
   }
 }
 
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
+module "autoscaling" {
+  source  = "terraform-aws-modules/autoscaling/aws"
+  version = "8.0.1"
 
-  vpc_security_group_ids = [module.web_sg.security_group_id]
+  name = "web"
+  min_size                  = 1
+  max_size                  = 2
+  desired_capacity          = 1
+  wait_for_capacity_timeout = 0
+  health_check_type         = "EC2"
 
-  subnet_id = module.web_vpc.public_subnets[0]
+  vpc_zone_identifier       = module.web_vpc.public_subnets
+  target_group_arns         = module.web_alb.target_group_arns
+  security_group_ids        = [module.web_sg.security_group_id]
 
-  tags = {
-    Name = "HelloWorld"
-  }
+  image_id                  = data.aws_ami.app_ami.id
+  instance_type             = var.instance_type
 }
 
-module "alb" {
+module "web_alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "web-alb"
