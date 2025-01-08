@@ -56,7 +56,7 @@ module "alb" {
   security_groups = module.web_sg.security_group_id
 
   listeners = {
-    {
+    listener_1 = {
       port     = 80
       protocol = "HTTP"
       target_group_key = "my_target"
