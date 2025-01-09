@@ -65,20 +65,17 @@ module "web_alb" {
       port     = 80
       protocol = "HTTP"
       target_group_index = 0
-      forward = {
-        target_group_key = "my_target"
-      }
     }
   }
 
-  target_groups = {
-    my_target = {
+  target_groups = [
+    {
       name_prefix      = "web-"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
     }
-  }
+  ]
 
   tags = {
     Environment = "dev"
