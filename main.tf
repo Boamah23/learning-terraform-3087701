@@ -72,7 +72,7 @@ module "web_alb" {
 
   target_groups = [
     {
-      name_prefix      = "h1"
+      name_prefix      = "web"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
