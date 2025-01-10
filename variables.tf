@@ -5,7 +5,7 @@ variable "instance_type" {
 
 variable "ami_filter" {
     description = "Name filter and owner for AMI"
-    type = objec({
+    type = object ({
         name = string
         owner = string
     })
