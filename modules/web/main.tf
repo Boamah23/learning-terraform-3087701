@@ -52,17 +52,6 @@ module "autoscaling" {
   instance_type             = var.instance_type
 }
 
-data "aws_autoscaling_group" "asg" {
-  name = module.autoscaling.autoscaling_group_arn
-}
-
-resource "aws_lb_target_group_attachment" "asg_attachment" {
-  for_each = toset(data.aws_autoscaling_group.asg.instance_name)
-
-  target_group_arn = module.web_alb.target_groups[0].arn
-  target_id        = each.value
-}
-
 module "web_alb" {
   source = "terraform-aws-modules/alb/aws"
 
