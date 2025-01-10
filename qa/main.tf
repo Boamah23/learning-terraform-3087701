@@ -8,5 +8,9 @@ module "qa" {
 
     asg_min_size = 1
     asg_max_size = 2
-    instance_id_dev = var.instance_id_qa.instance_id
+    
+    instance_identification = {
+        instance_id = "i-0210b1f65f08b9606"
+    }
+    
 }
