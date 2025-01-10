@@ -50,3 +50,14 @@ variable "instance_id_dev" {
     instance_id = "i-0474579f15bdb8d03"
   }
 }
+
+variable "instance_id_qa" {
+  description = "ID of qa insatnce"
+  type = object({
+    instance_id = string
+  })
+
+  default = {
+    instance_id = "i-0210b1f65f08b9606"
+  }
+}
