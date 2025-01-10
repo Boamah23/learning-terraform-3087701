@@ -50,6 +50,7 @@ module "autoscaling" {
 
   image_id                  = data.aws_ami.app_ami.id
   instance_type             = var.instance_type
+  lb_target_group_arn       = module.web_alb.arn
 }
 
 module "web_alb" {
@@ -76,7 +77,6 @@ module "web_alb" {
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
-      target_id        = module.autoscaling.autoscaling_group_arn
     }
   ]
 
