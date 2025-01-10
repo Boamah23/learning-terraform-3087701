@@ -50,8 +50,17 @@ module "autoscaling" {
 
   image_id                  = data.aws_ami.app_ami.id
   instance_type             = var.instance_type
+}
 
-  target_group_arns = [module.web_alb.target_groups[0].arn]
+data "aws_autoscaling_group" "asg" {
+  name = module.autoscaling.this_autoscaling_group_name
+}
+
+resource "aws_lb_target_group_attachment" "asg_attachment" {
+  for_each = toset(data.aws_autoscaling_group.asg.instances)
+
+  target_group_arn = module.web_alb.target_groups[0].arn
+  target_id        = each.value
 }
 
 module "web_alb" {
