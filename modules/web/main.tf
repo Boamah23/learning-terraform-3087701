@@ -53,7 +53,7 @@ module "autoscaling" {
 }
 
 data "aws_autoscaling_group" "asg" {
-  name = module.autoscaling.this_autoscaling_group_name
+  name = module.autoscaling.autoscaling_group_arn
 }
 
 resource "aws_lb_target_group_attachment" "asg_attachment" {
