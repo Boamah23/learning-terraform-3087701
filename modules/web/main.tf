@@ -76,7 +76,7 @@ module "web_alb" {
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
-      target_id        = "i-0474579f15bdb8d03"
+      target_id        = var.instance_id_dev.instance_id
     }
   ]
 

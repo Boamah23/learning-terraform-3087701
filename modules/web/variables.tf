@@ -39,3 +39,14 @@ variable "asg_max_size" {
   description = "Maximum number of instances in ASG"
   default = 1
 }
+
+variable "instance_id_dev" {
+  description = "ID of dev insatnce"
+  type = object({
+    instance_id = string
+  })
+
+  default = {
+    instance_id = "i-0474579f15bdb8d03"
+  }
+}
