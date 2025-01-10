@@ -39,7 +39,7 @@ module "autoscaling" {
   version = "8.0.1"
 
   name = "web"
-  min_size                  = var.asg_max_size
+  min_size                  = var.asg_min_size
   max_size                  = var.asg_max_size
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
